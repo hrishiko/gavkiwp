@@ -1,0 +1,203 @@
+/* LayerSlider Flatastic Skin */
+
+.ls-shopme .ls-playvideo {
+	width: 60px;
+	height: 60px;
+	margin-left: -30px;
+	margin-top: -30px;
+}
+
+.ls-shopme .ls-playvideo,
+.ls-shopme .ls-nav-sides,
+.ls-shopme .ls-bottom-slidebuttons a,
+.ls-shopme .ls-nav-start,
+.ls-shopme .ls-nav-stop,
+.ls-shopme .ls-fullscreen,
+.ls-shopme .ls-loading-container {
+	background-image: url(skin.png);
+}
+
+.ls-shopme .ls-playvideo { background-position: -300px -150px; }
+
+.ls-shopme .ls-playvideo:hover,
+.ls-shopme .ls-vpcontainer:hover .ls-playvideo { background-position: -375px -150px; }
+
+.ls-shopme .ls-nav-start { background-position: -300px 0; }
+
+.ls-shopme .ls-nav-start:hover,
+.ls-shopme .ls-nav-start-active { background-position: -300px -75px; }
+
+.ls-shopme .ls-nav-stop { background-position: -450px 0; }
+
+.ls-shopme .ls-nav-stop:hover,
+.ls-shopme .ls-nav-stop-active { background-position: -450px -75px; }
+
+.ls-shopme .ls-bottom-slidebuttons a { background-position: 0 -150px; }
+
+.ls-shopme .ls-bottom-slidebuttons a.ls-nav-active,
+.ls-shopme .ls-bottom-slidebuttons a:hover { background-position: -75px -150px; }
+
+.ls-shopme .ls-nav-sideleft { background-position: -150px -150px; }
+
+.ls-shopme .ls-nav-sideright { background-position: -225px -150px; }
+
+.ls-shopme .ls-nav-prev,
+.ls-shopme .ls-nav-next {
+	width: 40px;
+	height: 50px;
+	z-index: 10000;
+	top: 50%;
+	margin-top: -25px;
+	position: absolute;
+}
+
+.ls-shopme .ls-nav-prev { left: 10px; }
+.ls-shopme .ls-nav-next { right: 10px; }
+
+.ls-shopme .ls-bottom-slidebuttons,
+.ls-shopme .ls-bottom-slidebuttons a,
+.ls-shopme .ls-nav-start,
+.ls-shopme .ls-nav-stop,
+.ls-shopme .ls-nav-sides { height: 20px; }
+
+.ls-shopme .ls-bottom-slidebuttons,
+.ls-shopme .ls-bottom-slidebuttons a,
+.ls-shopme .ls-nav-start,
+.ls-shopme .ls-nav-stop,
+.ls-shopme .ls-nav-sides { display: inline-block; }
+
+.ls-shopme .ls-bottom-slidebuttons,
+.ls-shopme .ls-nav-start,
+.ls-shopme .ls-nav-stop,
+.ls-shopme .ls-nav-sides { top: -30px; }
+
+.ls-shopme .ls-nav-start,
+.ls-shopme .ls-nav-stop { width: 25px; }
+
+.ls-shopme .ls-bottom-slidebuttons a { width: 20px; }
+
+.ls-shopme .ls-nav-sides { width: 0; }
+
+.ls-shopme .ls-thumbnail-hover {
+	bottom: 30px;
+	padding: 2px;
+	margin-left: 1px;
+}
+
+.ls-shopme .ls-thumbnail-hover-bg {
+	background: #eee;
+}
+
+.ls-shopme .ls-thumbnail-hover span {
+	border: 5px solid #eee;
+	margin-left: -5px;
+}
+
+.ls-shopme .ls-thumbnail { top: 10px; }
+
+.ls-shopme .ls-thumbnail-inner {
+	padding: 2px;
+	margin-left: -2px;
+	background: #fff;
+}
+
+.ls-shopme .ls-thumbnail-slide a { margin-right: 2px; }
+
+.ls-shopme .ls-nothumb { background: #eee; }
+
+.ls-shopme .ls-loading-container {
+	width: 40px;
+	height: 40px;
+	margin-left: -20px;
+	margin-top: -20px;
+	background-position: -450px -150px;
+}
+
+.ls-shopme .ls-loading-indicator {
+	width: 22px;
+	height: 22px;
+	margin-top: 9px;
+	background-image: url(loading.gif);
+}
+
+.ls-shopme .ls-fullscreen {
+	width: 30px;
+	height: 30px;
+	right: 10px;
+	top: 10px;
+	background-position: -525px -150px;
+}
+
+.ls-shopme .ls-fullscreen:hover { background-position: -525px -190px; }
+
+.ls-shopme .ls-nav-prev,
+.ls-shopme .ls-nav-next {
+	position: absolute;
+	top: 50%;
+	z-index: 100;
+	display: block;
+	margin-top: -25px;
+	width: 50px;
+	height: 50px;
+	opacity: 0;
+	background-color: #6f706d;
+	background-color: rgba(51,51,51,.5);
+	text-align: center;
+	cursor: pointer;
+	overflow: hidden;
+
+	-webkit-border-radius: 3px;
+			border-radius: 3px;
+	-webkit-transition: all .35s ease;
+			transition: all .35s ease;
+}
+
+.ls-shopme .ls-nav-prev { left: 20px;  }
+.ls-shopme .ls-nav-next { right: 20px; }
+
+.ls-shopme:hover .ls-nav-prev,
+.ls-shopme:hover .ls-nav-next { opacity: 1; }
+
+.ls-shopme .ls-nav-prev:hover,
+.ls-shopme .ls-nav-next:hover {
+	background-color: rgb(51,51,51);
+	background-color: rgba(51,51,51, 1);
+}
+
+.ls-shopme .ls-nav-prev:after,
+.ls-shopme .ls-nav-next:after {
+	content: "";
+	display: inline-block;
+	vertical-align: middle;
+	height: 100%;
+}
+
+.ls-shopme .ls-nav-prev:before,
+.ls-shopme .ls-nav-next:before {
+	display: inline-block;
+	vertical-align: middle;
+	font-family: 'fontello';
+	font-size: 28px;
+	margin-top: -1px;
+	color: #fff;
+}
+
+.ls-shopme .ls-nav-prev:before { content: "\efbe"; }
+.ls-shopme .ls-nav-next:before { content: "\efbf"; }
+
+@media only screen and (max-width: 767px) {
+
+
+}
+
+.ls-shopme .ls-slide small {
+	font-size: 42px;
+	vertical-align: baseline;
+}
+
+.ls-shopme .ls-bar-timer {
+	height: 5px;
+	background-color: #000;
+	border-bottom: none;
+	opacity: 0.15;
+}
