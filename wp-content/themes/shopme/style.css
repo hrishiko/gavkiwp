@@ -307,7 +307,7 @@ Headers:	1em 'Roboto' sans-serif;
 
 	[class*="page_wrapper"] { background-color: #f8f8f8; }
 
-	.page_wrapper { padding: 40px 0 60px; }
+	.page_wrapper { padding: 15px 0 0px; }
 
 	aside#sidebar {
 		position: relative;
