@@ -18,11 +18,7 @@ if (!class_exists('SHOPME_CONFIG_MEGAMENU')) {
 
 			if (!is_admin()) {
 
-				$dir = dirname(__FILE__);
-
 				$this->paths = array(
-					'APP_ROOT' => $dir,
-					'APP_DIR' => basename( $dir ),
 					'BASE_URI' => SHOPME_BASE_URI . trailingslashit('config-megamenu'),
 					'ASSETS_DIR_NAME' => 'assets'
 				);
@@ -34,9 +30,7 @@ if (!class_exists('SHOPME_CONFIG_MEGAMENU')) {
 		}
 
 		public function add_hooks() {
-
 			add_action('wp_enqueue_scripts', array(&$this, 'front_init'), 1);
-
 		}
 
 		public function front_init() {
@@ -44,9 +38,7 @@ if (!class_exists('SHOPME_CONFIG_MEGAMENU')) {
 		}
 
 		public function register_css() {
-			$front_css_file = $this->assetUrl('css/frontend-megamenu.css');
-			wp_register_style( SHOPME_PREFIX . 'frontend_megamenu', $front_css_file, array('mmm_mega_main_menu') );
-			wp_enqueue_style( SHOPME_PREFIX . 'frontend_megamenu' );
+			wp_enqueue_style( SHOPME_PREFIX . 'frontend_megamenu', $this->assetUrl('css/frontend-megamenu.css'), array('mmm_mega_main_menu') );
 		}
 
 	}

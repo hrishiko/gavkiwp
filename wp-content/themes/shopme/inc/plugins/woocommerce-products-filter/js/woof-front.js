@@ -90,6 +90,12 @@ function shopme_woof_init_pagination() {
 
 		shopme_woof_submit_link(shopme_woof_get_submit_link());
 
+		setTimeout(function() {
+			jQuery('html, body').stop().animate({
+				scrollTop: 0
+			}, 600);
+		}, 50);
+
 		return false;
 	});
 

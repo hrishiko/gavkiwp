@@ -6,11 +6,18 @@
 .toplevel_page_shopme #wpbody-content > .settings-error,
 .toplevel_page_shopme #wpbody-content > .woocommerce-message,
 .toplevel_page_shopme #wpbody-content > .message,
+.toplevel_page_shopme #wpbody-content > .notice,
 .toplevel_page_shopme #wpbody-content > .updated
 {
 	position: relative;
 	margin-top: 15px;
 	margin-left: 980px;
+}
+
+.toplevel_page_shopme #wpwrap > .error {
+	position: relative;
+	margin-top: 15px;
+	margin-left: 1160px;
 }
 
 .mad-heading-title {

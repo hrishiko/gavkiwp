@@ -1,10 +1,11 @@
+
 /*
 Theme Name: Shopme
 Theme URI: http://themeforest.net/user/mad_velikorodnov/portfolio
 Author: Designed by mad_velikorodnov
 Author URI: inthe7heaven.com
 Description: Shopme premium eCommerce Wordpress Theme.
-Version: 1.1.2
+Version: 1.1.3
 Tags: one-column, two-columns, left-sidebar, right-sidebar, fluid-layout, fixed-layout, responsive-layout, sticky-post, theme-options
 License: Commercial
 License URI: http://themeforest.net/licenses/regular_extended
@@ -14,15 +15,15 @@ License URI: http://themeforest.net/licenses/regular_extended
 [Master Stylesheet]
 
 Project:	Shopme
-Last change:	11/02/2016 [initial release]
+Last change:	03/03/2016 [initial release]
 Assigned to:	mad_velikorodnov
 Primary use:	eCommerce
 
 /*------------------------------------------------------------------
 [Color codes]
 
-# Primary Color: #f8f8f8
-# Secondary Color: #0186c8
+# Primary Color: #4ac4fa
+# Secondary Color: #018bc8
 
 Background:	#004969
 Content Color:	#777
@@ -59,7 +60,7 @@ Headers:	1em 'Roboto' sans-serif;
 		5.2 Main navigation
 			5.2.1 Mega menu
 			5.2.2 Sticky menu
-			5.2.3 Sticky header					
+			5.2.3 Sticky header
 		5.4 Header type 2
 		5.5 Header type 4
 		5.6 Header type 5
@@ -307,7 +308,7 @@ Headers:	1em 'Roboto' sans-serif;
 
 	[class*="page_wrapper"] { background-color: #f8f8f8; }
 
-	.page_wrapper { padding: 15px 0 0px; }
+	.page_wrapper { padding: 40px 0 60px; }
 
 	aside#sidebar {
 		position: relative;
@@ -2262,8 +2263,8 @@ Headers:	1em 'Roboto' sans-serif;
 	}
 
 	.bottom_part {
-		padding-top:10px;
-		padding-bottom:20px;
+		padding-top:29px;
+		padding-bottom:32px;
 		width: inherit;
 	}
 
@@ -2465,10 +2466,10 @@ Headers:	1em 'Roboto' sans-serif;
 	-------------------------------------------- */
 
 	#main_navigation_wrap {
-		    width: inherit;
-    		    position: relative;
-                    background-color: #fff;
-                    z-index: 115;
+		width: inherit;
+		position: relative;
+		background-color: #fff;
+		z-index: 115;
 	}
 
 	#main_navigation_wrap::after,
@@ -2555,7 +2556,6 @@ Headers:	1em 'Roboto' sans-serif;
 		.full_width_nav > ul li {
 			position: relative;
 			list-style: none;
-
 		}
 
 		.full_width_nav > ul > li > a
@@ -2693,7 +2693,6 @@ Headers:	1em 'Roboto' sans-serif;
 			min-width: 240px;
 		}
 
-
 			.main_navigation .sub-menu .sub-menu,
 			.full_width_nav .sub-menu .sub-menu,
 
@@ -2708,7 +2707,7 @@ Headers:	1em 'Roboto' sans-serif;
 
 			.topbar .sub-menu .sub-menu,
 			.topbar ul.children ul.children
-			{font-weight: bold;
+			{
 				top: -1px;
 				left: auto;
 				right: 100%;
@@ -2771,20 +2770,6 @@ Headers:	1em 'Roboto' sans-serif;
 			right: 15px;
 		}
 
-.sub-menu { width: 410px !important; }
-.sub-menu-columns ul.sub-menu li {
-    display: inline-block !important;
-    float: left !important;
-    width: 200px !important;
-}
-.sub-menu-columns ul.sub-menu li:nth-child(odd) {
-    float: left !important;
-    margin-right: 10px !important;
-}
-.sub-menu-columns ul.sub-menu li:nth-child(even) {
-    float: right !important;
-}
-
 		.main_navigation .menu-item-has-children:hover > a::after,
 		.main_navigation ul > li.menu-item-has-children.current-menu-item > a::after,
 		.main_navigation ul > li.menu-item-has-children.current-menu-parent > a::after,
@@ -2846,9 +2831,7 @@ Headers:	1em 'Roboto' sans-serif;
 		}
 
 		.full_width_nav > ul > li > .sub-menu,
-		.full_width_nav > ul > li > .children { margin-top: 1px;}
-
-
+		.full_width_nav > ul > li > .children { margin-top: 1px; }
 
 		.full_width_nav > ul > li:hover > a
 		{
@@ -2856,7 +2839,6 @@ Headers:	1em 'Roboto' sans-serif;
 
 			-webkit-transition-duration: .1s;
 					transition-duration: .1s;
- 
 		}
 
 		.sticky_inner > .nav_item:not(:first-child),
@@ -3319,14 +3301,6 @@ Headers:	1em 'Roboto' sans-serif;
 						transform: scale(.7);
 			}
 
-
-		/* --------------------------------------------
-				5.2.3 Sticky header
-		-------------------------------------------- */
-
-	/* ------------------------------------------------------
-				5.2.4 Split navigation menu in 2 columns
-		------------------------------------------------------ */
 
 	/* --------------------------------------------
 			5.4 Header type 2
@@ -3883,7 +3857,7 @@ Headers:	1em 'Roboto' sans-serif;
 				6.1.3 Widget Search
 		-------------------------------------------- */
 
-		.widget_search #searchform { position: relative;}
+		.widget_search #searchform { position: relative; }
 
 			.widget_search label { display: none; }
 
@@ -4101,7 +4075,7 @@ Headers:	1em 'Roboto' sans-serif;
 			.md_flexbox .testimonials-area.tm-columns-4 .tm-grid .tm-item {
 				-webkit-flex-basis: 25%;
 						flex-basis: 25%;
-				max-width: 33.4%;
+				max-width: 25%;
 			}
 
 			.md_no-flexbox .testimonials-area.tm-columns-3 .tm-grid .tm-item {

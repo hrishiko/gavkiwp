@@ -51,7 +51,7 @@
 			$shopme_header_layout = rwmb_meta('shopme_header_layout', '', $shopme_post_id);
 
 			if (empty($shopme_header_layout)) {
-				$shopme_header_layout = shopme_custom_get_option('header_layout', 'type_1');
+				$shopme_header_layout = shopme_custom_get_option('header_layout', 'type_6');
 			}
 		?>
 
