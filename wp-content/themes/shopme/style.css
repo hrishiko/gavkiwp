@@ -1,4 +1,3 @@
-
 /*
 Theme Name: Shopme
 Theme URI: http://themeforest.net/user/mad_velikorodnov/portfolio
@@ -308,7 +307,7 @@ Headers:	1em 'Roboto' sans-serif;
 
 	[class*="page_wrapper"] { background-color: #f8f8f8; }
 
-	.page_wrapper { padding: 40px 0 60px; }
+	.page_wrapper { padding: 15px 0 0px; }
 
 	aside#sidebar {
 		position: relative;
@@ -2263,8 +2262,8 @@ Headers:	1em 'Roboto' sans-serif;
 	}
 
 	.bottom_part {
-		padding-top:29px;
-		padding-bottom:32px;
+		padding-top:15px;
+		padding-bottom:15px;
 		width: inherit;
 	}
 
