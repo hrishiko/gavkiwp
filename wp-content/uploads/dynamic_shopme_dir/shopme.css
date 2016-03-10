@@ -6,12 +6,12 @@
 
 	::selection {
 		background-color: #326fa2;
-		color: #fff;
+		color: #ffffff;
 	}
 
 	::-moz-selection {
 		background-color: #326fa2;
-		color: #fff;
+		color: #ffffff;
 	}
 
 	 ::-webkit-scrollbar-thumb {
@@ -20,7 +20,7 @@
 
 	/* mark, ins {
 		background-color: #326fa2;
-		color: #fff;
+		color: #ffffff;
 	} */
 
 	body {
