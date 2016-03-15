@@ -3994,7 +3994,7 @@ ul.wpb_thumbnails-fluid > li,
 	margin-bottom: 40px;
 }
 
-.wpb_content_element { margin-bottom: 30px; }
+.wpb_content_element { margin-bottom: 0px; }
 
 .wpb_layerslider_element.wpb_content_element,
 .banner-area.wpb_content_element,

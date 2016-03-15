@@ -307,7 +307,7 @@ Headers:	1em 'Roboto' sans-serif;
 
 	[class*="page_wrapper"] { background-color: #f8f8f8; }
 
-	.page_wrapper { padding: 15px 0 0px; }
+	.page_wrapper { padding: 15px 0 40px; }
 
 	aside#sidebar {
 		position: relative;
@@ -2087,7 +2087,8 @@ Headers:	1em 'Roboto' sans-serif;
 	/*webkit only*/
 	@media only screen and (-webkit-min-device-pixel-ratio:0){
 
-		.table_layout:not(.list_view){ width: calc(100% + 1px); }
+		.table_layout:not(.list_view){ width: calc(100% + 1px); 
+			margin-bottom: 40px}
 
 		.rsContainer .rsSlide img{
 			-webkit-border-radius:3px 3px 3px 3px;
@@ -4115,7 +4116,7 @@ Headers:	1em 'Roboto' sans-serif;
 			6.2 Infoblocks
 	-------------------------------------------- */
 
-	.infoblock { position: relative; }
+	.infoblock { position: relative;}
 
 	.infoblock::before,
 	.infoblock::after {
