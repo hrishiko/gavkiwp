@@ -1,12 +1,12 @@
 === WC Vendors ===
-Contributors: wcvendors, digitalchild
+Contributors: wcvendors, digitalchild, bentasm1
 Tags: commission rate,  e-commerce, ecommerce, ebay, free, marketplace, multi seller, multi store, multi vendor, multistore, multivendor, multivendors, product vendor, product vendors, seller, shops, store, vendor, vendor shop, vendor system, vendors, wc multivendor, wc vendors, wc marketplace, wc market, woo vendors, woocommerce, woocommerce marketplace, woocommerce multi vendor, WooCommerce multivendor, woocommerce product vendors, WooCommerce vendors, yit, yith, yithemes
 Donate link: http://www.wcvendors.com/
 Author URI: http://www.wcvendors.com/
 Plugin URI: http://www.wcvendors.com/
 Requires at least: 4.0
-Tested up to: 4.4.2
-Stable tag: 1.8.7
+Tested up to: 4.5.0
+Stable tag: 1.8.8
 License: GPLv2 or later
 
 The free multi-vendor plugin for WooCommerce.  Now you can allow anyone to open a store on your site!
@@ -91,15 +91,17 @@ We currently ship WC Vendors free with the following language translations. If y
 
 = What version of WooCommerce do you support ? =
 
-Woocommerce 2.3 or above is supported.
+The latest version of WooCommerce.  We don't provide support for old versions of WooCommerce.  Whatever version is current, WC Vendors will work with.  If you have an old version of WooCommerce, this probably will work still, but we won't guarantee it. :-)
 
 = What version of php has been tested ? =
 
-PHP 5.4 has been tested. 
+PHP 5.4 and above is required.  Tested all the way to the latest PHP 7!
 
 = Where do I get help ? =
 
-You can post a support question on the support tab, however you'll get more help over at our community forums (http://www.wcvendors.com)
+You can post a support question on the support tab, however you'll get more help over at our community forums - https://www.wcvendors.com/help/
+
+Also be sure to visit our KnowledgeBase at https://www.wcvendors.com/kb/
 
 == Screenshots ==
 
@@ -115,6 +117,11 @@ You can post a support question on the support tab, however you'll get more help
 No Upgrade required at this time.
 
 == Changelog ==
+
+= Version 1.8.8 - 22nd March 2016 = 
+
+* Fixed: Undefined variable error in commission class
+* Fixed: Pagination bug in wcv_vendorslist shortcode 
 
 = Version 1.8.7 - 15th March 2016 = 
 

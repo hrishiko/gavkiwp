@@ -22,8 +22,6 @@ $num_members_products_activate  = $this->get_number_of_membership_products();
 <div class="yit-container product-licence-activation">
     <h2><?php _e( 'Yithemes License Activation', 'yith-plugin-fw' ) ?></h2>
 
-    <?php $this instanceof YIT_Theme_Licence && $this->show_old_licence_message() && $this->get_old_licence_message(); ?>
-
     <div class="licence-check-section">
         <form method="post" id="licence-check-update" action="<?php echo admin_url( 'admin-ajax.php' ) ?>">
             <span class="licence-label" style="display: block;"><?php _e( 'Have you updated your licenses? Have you asked for an extension? Update information concerning your products.', 'yith-plugin-fw' ); ?></span>

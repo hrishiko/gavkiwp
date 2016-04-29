@@ -2139,7 +2139,9 @@ Headers:	1em 'Roboto' sans-serif;
 			table td:first-child { border-left-width: 0; }
 
 			table th:last-child,
-			table td:last-child { border-right-width:0 }
+			table td:last-child {
+			/* border-right-width:0 */
+			}
 
 			table > *:first-child > tr:first-child th,
 			table > *:first-child > tr:first-child td{ border-top: none; }

@@ -188,9 +188,10 @@ jQuery(document).ready(function($) {
             var lang = $( '.yith-woocompare-widget .products-list').data('lang');
 
             var button = $(this),
+                prod_id = button.data('product_id'),
                 data = {
                     action: yith_woocompare.actionremove,
-                    id: button.data('product_id'),
+                    id: prod_id,
                     context: 'frontend',
                     responseType: 'product_list',
                     lang: lang
@@ -214,10 +215,20 @@ jQuery(document).ready(function($) {
                 data: data,
                 dataType: 'html',
                 success: function (response) {
+
+                    if( prod_id == 'all' ) {
+                        $( '.compare.added' ).removeClass('added').html( yith_woocompare.button_text );
+                    }
+                    else {
+                        $('.compare[data-product_id="' + prod_id + '"]' ).removeClass('added').html( yith_woocompare.button_text );
+                    }
+
                     product_list.html(response);
                     if( typeof $.fn.block != 'undefined' ) {
                         product_list.unblock();
                     }
+
+
                 }
             });
         });
