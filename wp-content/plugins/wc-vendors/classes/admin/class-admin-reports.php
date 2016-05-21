@@ -415,7 +415,10 @@ class WCV_Admin_Reports
 		$total_start_date 	= !empty( $_POST[ 'total_start_date' ] ) ? $_POST[ 'total_start_date' ] : strtotime( date( 'Ymd', strtotime( date( 'Ym', current_time( 'timestamp' ) ) . '01' ) ) );
 		$total_end_date  	= !empty( $_POST[ 'total_end_date' ] ) ? $_POST[ 'total_end_date' ] : strtotime( date( 'Ymd', current_time( 'timestamp' ) ) );
 		$commission_status  = !empty( $_POST[ 'commission_status' ] ) ? $_POST[ 'commission_status' ] : 'due';
-		$date_sql = ( !empty( $_POST[ 'total_start_date' ] ) && !empty( $_POST[ 'total_end_date' ] ) ) ? " time >= '$total_start_date' AND time <= '$total_end_date' AND" : ""; 
+		$date_sql = ( !empty( $_POST[ 'total_start_date' ] ) && !empty( $_POST[ 'total_end_date' ] ) ) ? " time BETWEEN '$total_start_date 00:00:00' AND '$total_end_date 23:59:59' AND" : ""; 
+
+		error_log( $total_start_date ); 
+		error_log( $total_end_date ); 
 
 		$status_sql = " status='$commission_status'"; 
 
@@ -445,7 +448,10 @@ class WCV_Admin_Reports
 				<option value="reversed"><?php _e( 'Reversed', 'wcvendors' ); ?></option>
 			</select>
 
-			<input type="submit" class="button" value="<?php _e( 'Show', 'wcvendors' ); ?>"/></p>
+			<input type="submit" class="button" value="<?php _e( 'Show', 'wcvendors' ); ?>"/>
+
+			<?php do_action( 'wcvendors_after_commission_reports', $commissions ); ?>
+			</p>
 		</form>
 
 		<div class="woocommerce-reports-main">
