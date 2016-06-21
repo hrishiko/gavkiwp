@@ -45,8 +45,10 @@
 			 * @hooked footer_in_top_part_widgets - 10
 			 */
 
-			do_action('shopme_footer_in_top_part');
+			do_action('shopme_footer_in_top_part'); 
 			?>
+
+			<?php {echo "<hr />";} ?>
 
 			<?php
 			/**

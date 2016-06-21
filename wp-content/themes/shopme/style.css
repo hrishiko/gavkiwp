@@ -1193,7 +1193,7 @@ Headers:	1em 'Roboto' sans-serif;
 		.back_to_top {
 			position: fixed;
 			top: 700px;
-			right: 15%;
+			right: 5%;
 			z-index: 600;
 			background-color: #fff;
 			color: #333;

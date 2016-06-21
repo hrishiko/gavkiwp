@@ -85,6 +85,7 @@
 						<?php endif; ?>
 
 					</div><!--/ .row-->
+					
 				</div><!--/ .container-->
 
 			</section><!--/ .footer_section-->
