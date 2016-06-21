@@ -180,7 +180,7 @@
 					<!-- - - - - - - - - - - - - - Call to action - - - - - - - - - - - - - - - - -->
 
 					<div class="call_us">
-						<?php echo shopme_custom_get_option('call_us', wp_kses(__('<span>Call us toll free:</span> <b>+1888 234 5678</b>', 'shopme'), array('span' => array(), 'b' => array())), true) ?>
+						<?php echo shopme_custom_get_option('call_us', wp_kses(__('<span>Call us on : </span> <b>+91 9323291360 </b>', 'shopme'), array('span' => array(), 'b' => array())), true) ?>
 					</div>
 					<!--/ .call_us-->
 

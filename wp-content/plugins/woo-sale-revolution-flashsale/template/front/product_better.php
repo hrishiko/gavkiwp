@@ -204,11 +204,11 @@ class WC_flash_sale_Product {
 					<div class="fl-pcountdown-cnt">
 						<ul class="fl-'.$countdown.' fl-'.$fontsize.' fl-countdown fl-countdown-pub countdown_'.$id.'">
 						  <li><span class="days">00</span><p class="days_text">Days</p></li>
-							<li class="seperator">:</li>
+						
 							<li><span class="hours">00</span><p class="hours_text">'.__('Hours','pw_wc_flash_sale').'</p></li>
-							<li class="seperator">:</li>
+							
 							<li><span class="minutes">00</span><p class="minutes_text">'.__('Minutes','pw_wc_flash_sale').'</p></li>
-							<li class="seperator">:</li>
+							
 							<li><span class="seconds">00</span><p class="seconds_text">'.__('Seconds','pw_wc_flash_sale').'</p></li>
 						</ul>
 					</div>
@@ -403,11 +403,11 @@ class WC_flash_sale_Product {
 					<div class="fl-pcountdown-cnt">
 						<ul class="fl-'.$countdown.' fl-'.$fontsize.' fl-countdown fl-countdown-pub countdown_'.$id.'">
 						  <li><span class="days">00</span><p class="days_text">Days</p></li>
-							<li class="seperator">:</li>
-							<li><span class="hours">00</span><p class="hours_text">'.__('Hours','pw_wc_flash_sale').'</p></li>
-							<li class="seperator">:</li>
+							
+							<li><span class="hours">00</span><p class="hours_text">'.__('Hours','pw_wc_flash_sale').'</p></li>							
+							
 							<li><span class="minutes">00</span><p class="minutes_text">'.__('Minutes','pw_wc_flash_sale').'</p></li>
-							<li class="seperator">:</li>
+							
 							<li><span class="seconds">00</span><p class="seconds_text">'.__('Seconds','pw_wc_flash_sale').'</p></li>
 						</ul>
 					</div>

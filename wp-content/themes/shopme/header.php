@@ -53,7 +53,7 @@
 			if (empty($shopme_header_layout)) {
 				$shopme_header_layout = shopme_custom_get_option('header_layout', 'type_6');
 			}
-		?>
+		  ?>
 
 		<header id="header" data-shrink="<?php echo shopme_custom_get_option('sticky_navigation') ?>" class="<?php echo esc_attr($shopme_header_layout); ?>">
 			<?php do_action('shopme_header_layout', $shopme_header_layout); ?>
@@ -69,7 +69,7 @@
 			 */
 
 			do_action('shopme_header_after');
-		?>
+		?> 
 
 		<!-- - - - - - - - - - - - - Page Content - - - - - - - - - - - - - -->
 

@@ -122,6 +122,9 @@ Headers:	1em 'Roboto' sans-serif;
 		background-color: #004969;
 		background-attachment: fixed;
 	}
+	.clearfix_woo_currency {
+    		float: right;
+	}
 
 	a { color: #333; }
 
@@ -496,6 +499,8 @@ Headers:	1em 'Roboto' sans-serif;
 
 	.hide { display: none; }
 	.show { display: block; }
+	
+	.fs-itemdesc{ padding-top: 5px; background: #ececec; }
 
 /* ------------------------------------------------
 		4. Basic elements
@@ -562,7 +567,7 @@ Headers:	1em 'Roboto' sans-serif;
 
 		dt { font-weight: 700; }
 		big { font-size: 125%; }
-		del { opacity: 0.8; }
+		del { opacity: 0.8; margin-right: 5px; }
 
 		table, dl { margin-bottom: 25px; }
 
@@ -2314,7 +2319,7 @@ Headers:	1em 'Roboto' sans-serif;
 	}
 
 		.type_1 .header-login,
-		.type_3 .header-login { margin-top: 5px; }
+		.type_3 .header-login { margin-top: 10px; }
 
 		.header-login p {
 			margin-bottom: 0;
@@ -2890,6 +2895,7 @@ Headers:	1em 'Roboto' sans-serif;
 		#header .topbar {
 			margin-bottom: 0;
 			font-size: 13px;
+			margin-top: 10px;
 		}
 
 			#header .topbar ul { margin-bottom: 0; }

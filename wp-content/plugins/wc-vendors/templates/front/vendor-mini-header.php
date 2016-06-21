@@ -23,7 +23,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 ?>
 
-<h1><?php echo $shop_name; ?></h1>
+<h1><?php /*echo $shop_name;*/ ?></h1>
 <div class="wcv_shop_description">
 <?php echo $shop_description; ?>
 </div>

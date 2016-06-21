@@ -21,9 +21,9 @@ function vc_gitem_template_attribute_filter_terms_css_classes( $value, $data ) {
 	extract( array_merge( array(
 		'post' => null,
 	), $data ) );
-	if ( isset( $post->filter_terms ) ) {
+	if ( isset( $post->filter_terms ) && is_array( $post->filter_terms ) ) {
 		foreach ( $post->filter_terms as $t ) {
-			$output .= ' vc_grid-term-' . $t;
+			$output .= ' vc_grid-term-' . $t; // @todo fix #106154391786878 $t is array
 		}
 	}
 
@@ -161,7 +161,7 @@ function vc_gitem_template_attribute_post_image_url_attr_prettyphoto( $value, $d
 		'data' => '',
 	), $data ) );
 	$href = vc_gitem_template_attribute_post_image_url_href( $value, array( 'post' => $post, 'data' => '' ) );
-	$rel = ' rel="' . esc_attr( 'prettyPhoto[rel-' . md5( vc_request_param( 'shortcode_id' ) ) . ']' ) . '"';
+	$rel = ' data-rel="' . esc_attr( 'prettyPhoto[rel-' . md5( vc_request_param( 'shortcode_id' ) ) . ']' ) . '"';
 	return $href . $rel . ' class="' . esc_attr( $data . ( strlen( $href ) ? ' prettyphoto' : '' ) )
 	       . '" title="' . esc_attr(
 		   apply_filters( 'vc_gitem_template_attribute_post_title', $post->post_title, $data_default ) ) . '"';

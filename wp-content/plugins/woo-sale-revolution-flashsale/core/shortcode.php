@@ -163,11 +163,11 @@ function pw_flashsale_shortcode_auto( $atts, $content = null ) {
 				<div class="fl-rule-coundown countdown-'.$rand_id.'	">
 					<ul class="fl-'.$brands_attr['countdown_style'].' fl-'.$brands_attr['countdown_size'].' fl-countdown countdown_'.$id.'">
 					  <li><span class="days">--</span><p class="days_text">Days</p></li>
-						<li class="seperator">:</li>
+						
 						<li><span class="hours">--</span><p class="hours_text">'.__('Hours','pw_wc_flash_sale').'</p></li>
-						<li class="seperator">:</li>
+						
 						<li><span class="minutes">--</span><p class="minutes_text">'.__('Minutes','pw_wc_flash_sale').'</p></li>
-						<li class="seperator">:</li>
+						
 						<li><span class="seconds">--</span><p class="seconds_text">'.__('Seconds','pw_wc_flash_sale').'</p></li>
 					</ul>
 				</div>
@@ -485,12 +485,12 @@ function pw_flashsalerule_product_shortcode( $atts, $content = null )
 			$countdown ='
 				<div class="fl-rule-coundown countdown-'.$rand_id.'">
 					<ul class="fl-'.$brands_attr['countdown_style'].' fl-'.$brands_attr['countdown_size'].' fl-countdown countdown_'.$id.'">
-					  <li><span class="days">00</span><p class="days_text">Days</p></li>
-						<li class="seperator">:</li>
+					  <li><span class="days">00</span><p class="days_text">Days :</p></li>
+						
 						<li><span class="hours">00</span><p class="hours_text">'.__('Hours','pw_wc_flash_sale').'</p></li>
-						<li class="seperator">:</li>
+						
 						<li><span class="minutes">00</span><p class="minutes_text">'.__('Minutes','pw_wc_flash_sale').'</p></li>
-						<li class="seperator">:</li>
+						
 						<li><span class="seconds">00</span><p class="seconds_text">'.__('Seconds','pw_wc_flash_sale').'</p></li>
 					</ul>
 				</div>

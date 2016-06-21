@@ -1,0 +1,39 @@
+/**v.1.2.4 - 2016.06.04*/
+- Added: Convert currency widget
+- Fixed: Some minors
+
+/**v.1.2.3 - Released 5th May 2016**/
+- Fixed: Select currency on IE, Safari
+
+/**v.1.2.2 - Released 29th April 2016**/
+- Fixed: Show wrong symbol in product plugin
+- Fixed: Dont show regular price in latest woocommerce.
+- Fixed: Show product which was not entered price as Free!
+
+/**v.1.2.1 - Released 14th April 2016**/
+- Fixed: Disable change rate of main currency function
+- Fixed: Update data when reactive.
+
+/**v.1.2 - Released Feb 4th April 2016**/
+- Fixed: Filter price
+- Fixed: Change currency in backend
+- Fixed: Number of decimal
+- Fixed: Some minors issues
+- Updated: Hidden global currency
+- Updated: Note for pro version
+
+/**v.1.1.1 - Released Feb 2nd April 2016**/
+- Fixed: Detect IP
+
+/**v.1.1 - Released Feb 1st April 2016**/
+- Fixed: Widget filter price.
+- Fixed: Widget mini cart.
+- Fixed: INR Symbol.
+- Fixed: Number of Decimals.
+- Fixed: Change save currency to cookie.
+- Fixed: Some minors error.
+- Added: Prefer items.
+
+/**v.1.0.0 - Released Feb 23th 2016**/
+- The first released
+== Upgrade Notice ==

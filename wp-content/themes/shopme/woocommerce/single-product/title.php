@@ -42,13 +42,13 @@ if (is_object($prev_post)) {
 
 	<div class="page-nav">
 
-		<?php if (!empty($prev_post_url)): ?>
+		<?php /*if (!empty($prev_post_url)): ?>
 			<a href="<?php echo esc_url($prev_post_url) ?>" data-id="<?php echo esc_attr($prev_post_id); ?>" class="page-nav-link page-prev"></a>
 		<?php endif; ?>
 
 		<?php if (!empty($next_post_url)): ?>
 			<a href="<?php echo esc_url($next_post_url) ?>" data-id="<?php echo esc_attr($next_post_id); ?>" class="page-nav-link page-next"></a>
-		<?php endif; ?>
+		<?php endif; */?>
 
 	</div><!--/ .page-nav-->
 

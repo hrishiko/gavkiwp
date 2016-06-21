@@ -22,7 +22,7 @@
 
 					<!-- - - - - - - - - - - - - - Language change - - - - - - - - - - - - - - - - -->
 
-					<?php if (defined('ICL_LANGUAGE_CODE')): ?>
+					<?php /*if (defined('ICL_LANGUAGE_CODE')): ?>
 						<?php if (shopme_custom_get_option('show_language')): ?>
 							<?php echo SHOPME_WC_WPML_CONFIG::wpml_header_languages_list(); ?>
 						<?php endif; ?>
@@ -36,8 +36,10 @@
 						<?php if (defined('SHOPME_WOO_CONFIG')): ?>
 							<?php echo SHOPME_WC_CURRENCY_SWITCHER::output_switcher_html(); ?>
 						<?php endif; ?>
-					<?php endif; ?>
-
+					<?php endif; */?>
+					<div class="clearfix_woo_currency">
+						<?php  echo do_shortcode('[woo_multi_currency]'); ?>
+					</div>
 					<!-- - - - - - - - - - - - - - End of currency change - - - - - - - - - - - - - - - - -->
 
 				</div><!--/ .clearfix-->
@@ -120,7 +122,7 @@
 					<!-- - - - - - - - - - - - - - Call to action - - - - - - - - - - - - - - - - -->
 
 					<div class="call_us">
-						<?php echo shopme_custom_get_option('call_us', wp_kses(__('<span>Call us toll free:</span> <b>+1888 234 5678</b>', 'shopme'), array('span' => array(), 'b' => array())), true) ?>
+						<?php echo shopme_custom_get_option('call_us', wp_kses(__('<span>Call us on : </span> <b>+91 9323291360</b>', 'shopme'), array('span' => array(), 'b' => array())), true) ?>
 					</div><!--/ .call_us-->
 
 					<!-- - - - - - - - - - - - - - End call to action - - - - - - - - - - - - - - - - -->

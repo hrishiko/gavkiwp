@@ -612,7 +612,7 @@ if (!function_exists('shopme_title')) {
 		$defaults = array(
 			'title' 	  => get_the_title($id),
 			'subtitle'    => "",
-			'output_html' => "<div class='extra-heading {class}'><{heading} class='extra-title'>{title}</{heading}>{additions}</div>",
+			/*'output_html' => "<div class='extra-heading {class}'><{heading} class='extra-title'>{title}</{heading}>{additions}</div>",*/
 			'class'		  => '',
 			'heading'	  => 'h2',
 			'additions'	  => ""
