@@ -22,6 +22,8 @@ $review_count = $product->get_review_count();
 $average      = $product->get_average_rating();
 ?>
 
+<?php do_action( 'woocommerce_product_meta_start' ); ?>
+
 <div class="description_section v_centered">
 
 	<div class="woocommerce-product-rating" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">

@@ -90,20 +90,35 @@ if (!function_exists('shopme_woocommerce_single_variation_add_to_cart_button')) 
 				<tbody>
 				<tr>
 					<td><?php esc_html_e('Qty:', 'shopme'); ?></td>
+					<td></td>
 					<td class="product-quantity">
 						<?php woocommerce_quantity_input( array( 'input_value' => isset( $_POST['quantity'] ) ? wc_stock_amount( $_POST['quantity'] ) : 1 ) ); ?>
 					</td>
-				</tr>
+					<td></td>
+					<td><?php do_action( 'woocommerce_after_add_to_cart_button' ); ?></td>
+					<td><button type="submit" class="single_add_to_cart_button button alt"><?php echo esc_html( $product->single_add_to_cart_text() ); ?></button></td>
+					<td></td>
+					<td><?php echo do_shortcode('[wc_quick_buy  label="Buy Now"]'); ?></td>		
+			</tr>
+			
 				</tbody>
-			</table><!--/ .description-table-->
-
-			<button type="submit" class="single_add_to_cart_button button alt"><?php echo esc_html( $product->single_add_to_cart_text() ); ?></button>
-			<?php do_action( 'woocommerce_after_add_to_cart_button' ); ?>
-
+			</table>
+			
 			<input type="hidden" name="add-to-cart" value="<?php echo absint( $product->id ); ?>" />
 			<input type="hidden" name="product_id" value="<?php echo absint( $product->id ); ?>" />
 			<input type="hidden" name="variation_id" class="variation_id" value="" />
 		</div>
+		
+		<!--<div class="col-xs-12 nopadding shipping-container" style=" padding-left: 0;" >
+
+			<div class="col-xs-12 col-sm-6 col-md-2 padleft0" style=" padding-left: 0;"><?php //esc_html_e('Qty:', 'shopme'); ?></div>
+			<div class="col-xs-12 col-sm-6 col-md-3 padleft0" style=" padding-right: 0;"><?php //woocommerce_quantity_input( array( 'input_value' => isset( $_POST['quantity'] ) ? wc_stock_amount( $_POST['quantity'] ) : 1 ) ); ?></div>
+			<div><?php //do_action( 'woocommerce_after_add_to_cart_button' ); ?></div>
+			<div><button type="submit" class="single_add_to_cart_button button alt"><?php //echo esc_html( $product->single_add_to_cart_text() ); ?></button></div>
+			<div><?php //echo do_shortcode('[wc_quick_buy  label="Buy Now"]'); ?></div>
+		</div>-->
+		
+		
 		<?php
 	}
 }

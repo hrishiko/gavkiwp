@@ -50,6 +50,7 @@ if (is_object($prev_post)) {
 			<a href="<?php echo esc_url($next_post_url) ?>" data-id="<?php echo esc_attr($next_post_id); ?>" class="page-nav-link page-next"></a>
 		<?php endif; */?>
 
+
 	</div><!--/ .page-nav-->
 
 <?php endif; ?>

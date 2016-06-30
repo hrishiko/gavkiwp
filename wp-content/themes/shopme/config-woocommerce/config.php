@@ -694,14 +694,14 @@ if (!class_exists('SHOPME_WOOCOMMERCE_CONFIG')) {
 			}
 
 			// Additional information tab - shows attributes
-			if ( $product && ( $product->has_attributes() || ( $product->enable_dimensions_display() && ( $product->has_dimensions() || $product->has_weight() ) ) ) ) {
+		/*	if ( $product && ( $product->has_attributes() || ( $product->enable_dimensions_display() && ( $product->has_dimensions() || $product->has_weight() ) ) ) ) {
 				$tabs['additional_information'] = array(
 					'title'    => esc_html__( 'Additional Information', 'woocommerce' ),
 					'priority' => 20,
 					'callback' => 'woocommerce_product_additional_information_tab'
 				);
 			}
-
+*/
 			// Reviews tab - shows comments
 			if ( comments_open() ) {
 				$tabs['reviews'] = array(

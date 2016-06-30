@@ -3,13 +3,13 @@
 /*
 Plugin Name: Woo Multi Currency
 Plugin URI: http://villatheme.com
-Description: Creat a price switcher or approximately price with unlimit currency. Working base on WooCommerce plugin.
-Version: 1.2.4
-Author: Cuong Nguyen and Andy Ha (villatheme.com)
+Description: Creat a price switcher or approximate price with unlimit currency. Working base on WooCommerce plugin.
+Version: 1.3.2
+Author: Cuong Nguyen and Andy Ha (tuhn@villatheme.com)
 Author URI: http://villatheme.com
 Copyright 2016 VillaTheme.com. All rights reserved.
 */
-define( 'WOO_MULTI_CURRENCY_VERSION', '1.2.4' );
+define( 'WOO_MULTI_CURRENCY_VERSION', '1.3.2' );
 require_once plugin_dir_path( __FILE__ ) . 'admin/settings.php';
 require_once plugin_dir_path( __FILE__ ) . 'front-end/mini-cart.php';
 require_once plugin_dir_path( __FILE__ ) . 'front-end/filter-price.php';
@@ -28,7 +28,8 @@ class Woo_Multi_Currency {
 
 	public function __construct() {
 		if ( get_option( 'woocommerce_currency' ) != '' ) {
-			$this->main_currency = get_option( 'woocommerce_currency' );
+			$this->main_currency    = get_option( 'woocommerce_currency' );
+			$this->current_currency = $this->main_currency;
 		}
 		$this->currencies_list   = $this->wmc_get_currencies_list();
 		$this->currencies_symbol = $this->wmc_get_currencies_symbol();
@@ -155,6 +156,45 @@ class Woo_Multi_Currency {
 
 		/*Add Currency Option Title*/
 		add_filter( 'woo_multi_currency_tab_options', array( $this, 'currency_option_title' ) );
+		if ( get_option( 'wmc_allow_multi', 'no' ) == 'yes' && get_option( 'wmc_recalculate_coupon', 'no' ) == 'yes' ) {
+			add_filter( 'woocommerce_coupon_get_discount_amount', array( $this, 'wmc_coupon_get_discount_amount' ), 999, 5 );
+		}
+		/*Add order information*/
+		add_filter( 'woocommerce_thankyou_order_id', array( $this, 'woocommerce_thankyou_order_id' ), 9 );
+	}
+
+	/**
+	 * Insert information about order after checkout
+	 *
+	 * @param $order_id
+	 *
+	 * @return mixed
+	 */
+	public function woocommerce_thankyou_order_id( $order_id ) {
+		$wmc_order_info = get_option( 'wmc_selected_currencies' );
+		update_post_meta( $order_id, 'wmc_order_info', $wmc_order_info );
+
+		return $order_id;
+	}
+
+	/**
+	 *Change coupon fixed value as exachange rate of order currency with main currency
+	 *
+	 * @param $discount
+	 * @param $discounting_amount
+	 * @param $cart_item
+	 * @param $single
+	 * @param $wc_coupon
+	 *
+	 * @return mixed
+	 */
+	public function wmc_coupon_get_discount_amount( $discount, $discounting_amount, $cart_item, $single, $wc_coupon ) {
+		if ( $wc_coupon->is_type( array( 'fixed_cart', 'fixed_product' ) ) ) {
+			$discount *= $this->selected_currencies[$this->current_currency]['rate'];
+		}
+
+		return $discount;
+
 	}
 
 	public function wc_price_args( $price_arg ) {
@@ -338,13 +378,39 @@ class Woo_Multi_Currency {
 			} else {
 				$detect_ip_currency = $this->detect_ip_currency();
 			}
+
+			//Fix currency symbol with position in approxymately price
+			$current_pos = get_option( 'woocommerce_currency_pos' );
+			switch ( $current_pos ) {
+				case 'left' :
+					$format = '%1$s%2$s';
+					break;
+				case 'right' :
+					$format = '%2$s%1$s';
+					break;
+				case 'left_space' :
+					$format = '%1$s&nbsp;%2$s';
+					break;
+				case 'right_space' :
+					$format = '%2$s&nbsp;%1$s';
+					break;
+			}
+
 			if ( is_array( $detect_ip_currency ) && $detect_ip_currency['geoplugin_currencyCode'] != $this->current_currency ) {
 				if ( $product->sale_price > 0 ) {
-					$html_price = $html_price . "<br> " . esc_html__( 'Approximately Price', 'woo-multi-currency' ) . ": " . number_format( $product->sale_price * $detect_ip_currency['rate'], $decimals, $decimal_separator, $thousand_separator ) . ' ' . $detect_ip_currency['geoplugin_currencySymbol'];
+					$price           = number_format( $product->sale_price * $detect_ip_currency['rate'], $decimals, $decimal_separator, $thousand_separator );
+					$formatted_price = sprintf( $format, $detect_ip_currency['geoplugin_currencySymbol'], $price );
+					$html_price      = $html_price . "<br> " . esc_attr__( 'Approximately', 'woo-multi-currency' ) . ": " . $formatted_price;
 				} elseif ( $product->regular_price > 0 ) {
-					$html_price = $html_price . "<br> " . esc_html__( 'Approximately Price', 'woo-multi-currency' ) . ": " . number_format( $product->regular_price * $detect_ip_currency['rate'], $decimals, $decimal_separator, $thousand_separator ) . ' ' . $detect_ip_currency['geoplugin_currencySymbol'];
+					$price           = number_format( $product->regular_price * $detect_ip_currency['rate'], $decimals, $decimal_separator, $thousand_separator );
+					$formatted_price = sprintf( $format, $detect_ip_currency['geoplugin_currencySymbol'], $price );
+					$html_price      = $html_price . "<br> " . esc_attr__( 'Approximately', 'woo-multi-currency' ) . ": " . $formatted_price;
+					//$html_price = $html_price . "<br> " . esc_attr__( 'Approximately', 'woo-multi-currency' ) . ": " . number_format( $product->regular_price * $detect_ip_currency['rate'], $decimals, $decimal_separator, $thousand_separator ) . ' ' . $detect_ip_currency['geoplugin_currencySymbol'];
 				} else {
-					$html_price = $html_price . "<br> " . esc_html__( 'Approximately Price', 'woo-multi-currency' ) . ": " . number_format( $product->price * $detect_ip_currency['rate'], $decimals, $decimal_separator, $thousand_separator ) . ' ' . $detect_ip_currency['geoplugin_currencySymbol'];
+					$price           = number_format( $product->price * $detect_ip_currency['rate'], $decimals, $decimal_separator, $thousand_separator );
+					$formatted_price = sprintf( $format, $detect_ip_currency['geoplugin_currencySymbol'], $price );
+					$html_price      = $html_price . "<br> " . esc_attr__( 'Approximately', 'woo-multi-currency' ) . ": " . $formatted_price;
+					//$html_price = $html_price . "<br> " . esc_attr__( 'Approximately', 'woo-multi-currency' ) . ": " . number_format( $product->price * $detect_ip_currency['rate'], $decimals, $decimal_separator, $thousand_separator ) . ' ' . $detect_ip_currency['geoplugin_currencySymbol'];
 				}
 			}
 		}
@@ -473,7 +539,7 @@ class Woo_Multi_Currency {
 	 */
 
 	public function wmc_add_settings_link( $links ) {
-		$settings_link = '<a href="admin.php?page=wc-settings&tab=wmc" title="' . esc_attr__( 'Woo Multi Currency', 'woo-multi-currency' ) . '>">' . esc_html__( 'Settings', 'woo-multi-currency' ) . '</a>';
+		$settings_link = '<a href="admin.php?page=wc-settings&tab=wmc" title="' . esc_attr__( 'Woo Multi Currency', 'woo-multi-currency' ) . '>">' . esc_attr__( 'Settings', 'woo-multi-currency' ) . '</a>';
 		array_unshift( $links, $settings_link );
 
 		return $links;
@@ -502,6 +568,7 @@ class Woo_Multi_Currency {
 		$this->wmc_get_template( 'woo-multi-currency_widget.php', $args );
 
 	}
+
 	/**
 	 * Create short code
 	 *
@@ -556,7 +623,7 @@ class Woo_Multi_Currency {
 
 			}
 		}
-		update_option( 'wmc_selected_currencies', $result );
+		update_option( 'wmc_selected_currencies', apply_filters( 'wmc_selected_currencies', $result ) );
 		update_option( 'woocommerce_currency', $this->main_currency );
 		update_option( 'woocommerce_currency_pos', $main_currency_pos );
 		update_option( 'wmc_auto_update_rates_time', $_POST['wmc_auto_update_rates_time'] );
@@ -585,7 +652,7 @@ class Woo_Multi_Currency {
 	 * @return mixed
 	 */
 	public function wmc_add_tab( $tabs ) {
-		$tabs['wmc'] = esc_html__( 'Woo Multi Currency', 'woo-multi-currency' );
+		$tabs['wmc'] = esc_attr__( 'Woo Multi Currency', 'woo-multi-currency' );
 
 		return $tabs;
 	}
@@ -633,33 +700,41 @@ class Woo_Multi_Currency {
 		$setting_fields = array(
 
 			array(
-				'title' => esc_html__( 'GENERAL OPTIONS', 'woo-multi-currency' ),
+				'title' => esc_attr__( 'GENERAL OPTIONS', 'woo-multi-currency' ),
 				'type'  => 'title',
 				'desc'  => '',
 				'id'    => 'woo-multi-currency_ganeral'
 			),
 			array(
-				'title'    => esc_html__( 'Approximately Price', 'woo-multi-currency' ),
+				'title'    => esc_attr__( 'Approximate Price', 'woo-multi-currency' ),
 				'id'       => 'wmc_enable_approxi',
 				'default'  => 'no',
-				'desc'     => esc_html__( 'Enable Approximately Price on your shop page. It will auto detect customer\'s country .', 'woo-multi-currency' ),
+				'desc'     => esc_attr__( 'Enable Approximate Price on your shop page. It will auto detect customer\'s country .', 'woo-multi-currency' ),
 				'type'     => 'checkbox',
 				'desc_tip' => true,
 
 			),
 			array(
-				'title'    => esc_html__( 'Allow multi currency payment', 'woo-multi-currency' ),
+				'title'    => esc_attr__( 'Allow multi currency payment', 'woo-multi-currency' ),
 				'id'       => 'wmc_allow_multi',
 				'default'  => 'no',
-				'desc'     => esc_html__( 'Enable multi currency payment on your shop page.', 'woo-multi-currency' ),
+				'desc'     => esc_attr__( 'Enable multi currency payment on your shop page.', 'woo-multi-currency' ),
 				'type'     => 'checkbox',
 				'desc_tip' => true,
 			),
 			array(
-				'title'    => esc_html__( 'Auto update exchange rate', 'woo-multi-currency' ),
+				'title'    => esc_attr__( 'Recalculate coupon value', 'woo-multi-currency' ),
+				'id'       => 'wmc_recalculate_coupon',
+				'default'  => 'no',
+				'desc'     => esc_attr__( 'Recalculate coupon value base on rate of order currency with main currency. Example: coupon AAA value=10, main currency=USD, order currency=EUR, rate: 1 USD = 0.8 EUR, so when "Allow multi currency payment" enabled, client apply coupon code AAA, discount value is 10*0.8=8 EUR', 'woo-multi-currency' ),
+				'type'     => 'checkbox',
+				'desc_tip' => true,
+			),
+			array(
+				'title'    => esc_attr__( 'Auto update exchange rate', 'woo-multi-currency' ),
 				'id'       => 'wmc_auto_update_rates',
 				'default'  => 'no',
-				'desc'     => esc_html__( 'Check to enable auto update exchange rate.', 'woo-multi-currency' ),
+				'desc'     => esc_attr__( 'Check to enable auto update exchange rate.', 'woo-multi-currency' ),
 				'type'     => 'checkbox',
 				'desc_tip' => true,
 			),
@@ -675,7 +750,7 @@ class Woo_Multi_Currency {
 	public function currency_option_title( $data ) {
 		$new_data = array(
 			array(
-				'title' => esc_html__( 'CURRENCY OPTIONS', 'woo-multi-currency' ),
+				'title' => esc_attr__( 'CURRENCY OPTIONS', 'woo-multi-currency' ),
 				'type'  => 'title',
 				'desc'  => '',
 				'id'    => 'woo-multi-currency_select_currency'
@@ -758,56 +833,56 @@ class Woo_Multi_Currency {
 			apply_filters(
 				'woocommerce_currencies',
 				array(
-					'AED' => esc_html__( 'United Arab Emirates Dirham', 'woo-multi-currency' ),
-					'ARS' => esc_html__( 'Argentine Peso', 'woo-multi-currency' ),
-					'AUD' => esc_html__( 'Australian Dollars', 'woo-multi-currency' ),
-					'BDT' => esc_html__( 'Bangladeshi Taka', 'woo-multi-currency' ),
-					'BGN' => esc_html__( 'Bulgarian Lev', 'woo-multi-currency' ),
-					'BRL' => esc_html__( 'Brazilian Real', 'woo-multi-currency' ),
-					'CAD' => esc_html__( 'Canadian Dollars', 'woo-multi-currency' ),
-					'CHF' => esc_html__( 'Swiss Franc', 'woo-multi-currency' ),
-					'CLP' => esc_html__( 'Chilean Peso', 'woo-multi-currency' ),
-					'CNY' => esc_html__( 'Chinese Yuan', 'woo-multi-currency' ),
-					'COP' => esc_html__( 'Colombian Peso', 'woo-multi-currency' ),
-					'CZK' => esc_html__( 'Czech Koruna', 'woo-multi-currency' ),
-					'DKK' => esc_html__( 'Danish Krone', 'woo-multi-currency' ),
-					'DOP' => esc_html__( 'Dominican Peso', 'woo-multi-currency' ),
-					'EGP' => esc_html__( 'Egyptian Pound', 'woo-multi-currency' ),
-					'EUR' => esc_html__( 'Euros', 'woo-multi-currency' ),
-					'GBP' => esc_html__( 'Pounds Sterling', 'woo-multi-currency' ),
-					'HKD' => esc_html__( 'Hong Kong Dollar', 'woo-multi-currency' ),
-					'HRK' => esc_html__( 'Croatia kuna', 'woo-multi-currency' ),
-					'HUF' => esc_html__( 'Hungarian Forint', 'woo-multi-currency' ),
-					'IDR' => esc_html__( 'Indonesia Rupiah', 'woo-multi-currency' ),
-					'ILS' => esc_html__( 'Israeli Shekel', 'woo-multi-currency' ),
-					'INR' => esc_html__( 'Indian Rupee', 'woo-multi-currency' ),
-					'ISK' => esc_html__( 'Icelandic krona', 'woo-multi-currency' ),
-					'JPY' => esc_html__( 'Japanese Yen', 'woo-multi-currency' ),
-					'KES' => esc_html__( 'Kenyan shilling', 'woo-multi-currency' ),
-					'KRW' => esc_html__( 'South Korean Won', 'woo-multi-currency' ),
-					'LAK' => esc_html__( 'Lao Kip', 'woo-multi-currency' ),
-					'MXN' => esc_html__( 'Mexican Peso', 'woo-multi-currency' ),
-					'MYR' => esc_html__( 'Malaysian Ringgits', 'woo-multi-currency' ),
-					'NGN' => esc_html__( 'Nigerian Naira', 'woo-multi-currency' ),
-					'NOK' => esc_html__( 'Norwegian Krone', 'woo-multi-currency' ),
-					'NPR' => esc_html__( 'Nepali Rupee', 'woo-multi-currency' ),
-					'NZD' => esc_html__( 'New Zealand Dollar', 'woo-multi-currency' ),
-					'PHP' => esc_html__( 'Philippine Pesos', 'woo-multi-currency' ),
-					'PKR' => esc_html__( 'Pakistani Rupee', 'woo-multi-currency' ),
-					'PLN' => esc_html__( 'Polish Zloty', 'woo-multi-currency' ),
-					'PYG' => esc_html__( 'Paraguayan Guaraní', 'woo-multi-currency' ),
-					'RON' => esc_html__( 'Romanian Leu', 'woo-multi-currency' ),
-					'RUB' => esc_html__( 'Russian Ruble', 'woo-multi-currency' ),
-					'SAR' => esc_html__( 'Saudi Riyal', 'woo-multi-currency' ),
-					'SEK' => esc_html__( 'Swedish Krona', 'woo-multi-currency' ),
-					'SGD' => esc_html__( 'Singapore Dollar', 'woo-multi-currency' ),
-					'THB' => esc_html__( 'Thai Baht', 'woo-multi-currency' ),
-					'TRY' => esc_html__( 'Turkish Lira', 'woo-multi-currency' ),
-					'TWD' => esc_html__( 'Taiwan New Dollars', 'woo-multi-currency' ),
-					'UAH' => esc_html__( 'Ukrainian Hryvnia', 'woo-multi-currency' ),
-					'USD' => esc_html__( 'US Dollars', 'woo-multi-currency' ),
-					'VND' => esc_html__( 'Vietnamese Dong', 'woo-multi-currency' ),
-					'ZAR' => esc_html__( 'South African rand', 'woo-multi-currency' ),
+					'AED' => esc_attr__( 'United Arab Emirates Dirham', 'woo-multi-currency' ),
+					'ARS' => esc_attr__( 'Argentine Peso', 'woo-multi-currency' ),
+					'AUD' => esc_attr__( 'Australian Dollars', 'woo-multi-currency' ),
+					'BDT' => esc_attr__( 'Bangladeshi Taka', 'woo-multi-currency' ),
+					'BGN' => esc_attr__( 'Bulgarian Lev', 'woo-multi-currency' ),
+					'BRL' => esc_attr__( 'Brazilian Real', 'woo-multi-currency' ),
+					'CAD' => esc_attr__( 'Canadian Dollars', 'woo-multi-currency' ),
+					'CHF' => esc_attr__( 'Swiss Franc', 'woo-multi-currency' ),
+					'CLP' => esc_attr__( 'Chilean Peso', 'woo-multi-currency' ),
+					'CNY' => esc_attr__( 'Chinese Yuan', 'woo-multi-currency' ),
+					'COP' => esc_attr__( 'Colombian Peso', 'woo-multi-currency' ),
+					'CZK' => esc_attr__( 'Czech Koruna', 'woo-multi-currency' ),
+					'DKK' => esc_attr__( 'Danish Krone', 'woo-multi-currency' ),
+					'DOP' => esc_attr__( 'Dominican Peso', 'woo-multi-currency' ),
+					'EGP' => esc_attr__( 'Egyptian Pound', 'woo-multi-currency' ),
+					'EUR' => esc_attr__( 'Euros', 'woo-multi-currency' ),
+					'GBP' => esc_attr__( 'Pounds Sterling', 'woo-multi-currency' ),
+					'HKD' => esc_attr__( 'Hong Kong Dollar', 'woo-multi-currency' ),
+					'HRK' => esc_attr__( 'Croatia kuna', 'woo-multi-currency' ),
+					'HUF' => esc_attr__( 'Hungarian Forint', 'woo-multi-currency' ),
+					'IDR' => esc_attr__( 'Indonesia Rupiah', 'woo-multi-currency' ),
+					'ILS' => esc_attr__( 'Israeli Shekel', 'woo-multi-currency' ),
+					'INR' => esc_attr__( 'Indian Rupee', 'woo-multi-currency' ),
+					'ISK' => esc_attr__( 'Icelandic krona', 'woo-multi-currency' ),
+					'JPY' => esc_attr__( 'Japanese Yen', 'woo-multi-currency' ),
+					'KES' => esc_attr__( 'Kenyan shilling', 'woo-multi-currency' ),
+					'KRW' => esc_attr__( 'South Korean Won', 'woo-multi-currency' ),
+					'LAK' => esc_attr__( 'Lao Kip', 'woo-multi-currency' ),
+					'MXN' => esc_attr__( 'Mexican Peso', 'woo-multi-currency' ),
+					'MYR' => esc_attr__( 'Malaysian Ringgits', 'woo-multi-currency' ),
+					'NGN' => esc_attr__( 'Nigerian Naira', 'woo-multi-currency' ),
+					'NOK' => esc_attr__( 'Norwegian Krone', 'woo-multi-currency' ),
+					'NPR' => esc_attr__( 'Nepali Rupee', 'woo-multi-currency' ),
+					'NZD' => esc_attr__( 'New Zealand Dollar', 'woo-multi-currency' ),
+					'PHP' => esc_attr__( 'Philippine Pesos', 'woo-multi-currency' ),
+					'PKR' => esc_attr__( 'Pakistani Rupee', 'woo-multi-currency' ),
+					'PLN' => esc_attr__( 'Polish Zloty', 'woo-multi-currency' ),
+					'PYG' => esc_attr__( 'Paraguayan Guaraní', 'woo-multi-currency' ),
+					'RON' => esc_attr__( 'Romanian Leu', 'woo-multi-currency' ),
+					'RUB' => esc_attr__( 'Russian Ruble', 'woo-multi-currency' ),
+					'SAR' => esc_attr__( 'Saudi Riyal', 'woo-multi-currency' ),
+					'SEK' => esc_attr__( 'Swedish Krona', 'woo-multi-currency' ),
+					'SGD' => esc_attr__( 'Singapore Dollar', 'woo-multi-currency' ),
+					'THB' => esc_attr__( 'Thai Baht', 'woo-multi-currency' ),
+					'TRY' => esc_attr__( 'Turkish Lira', 'woo-multi-currency' ),
+					'TWD' => esc_attr__( 'Taiwan New Dollars', 'woo-multi-currency' ),
+					'UAH' => esc_attr__( 'Ukrainian Hryvnia', 'woo-multi-currency' ),
+					'USD' => esc_attr__( 'US Dollars', 'woo-multi-currency' ),
+					'VND' => esc_attr__( 'Vietnamese Dong', 'woo-multi-currency' ),
+					'ZAR' => esc_attr__( 'South African rand', 'woo-multi-currency' ),
 				)
 			)
 		);

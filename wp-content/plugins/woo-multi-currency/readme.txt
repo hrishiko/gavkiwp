@@ -1,17 +1,18 @@
 === Woo Multi Currency - The best free currency exchange plugin ===
 Contributors: mrt3vn
 Donate link: http://www.villatheme.com/donate
-Tags: woocommerce, currency, switcher, exchange, wordpress, filter, plugin, free, widget, style
+Tags: woocommerce, currency, switcher, exchange, wordpress, filter, plugin, free, widget, style, woocommerce multi currency, woo multi currency, woocommerece currency, currency switcher, woocommerce currency
 Requires at least: 4.0
-Tested up to: 4.5
-Stable tag: 1.2.4
+Tested up to: 4.5.2
+Stable tag: 1.3.2
 License: GPLv2 or later
 
-Woo Multi Currency create a price converter with unlimit WooCommerce Currency.
+Woo Multi Currency create a price converter with unlimited WooCommerce Currency.
 
 == Description ==
 
-Woo Multi Currency is a plugin for WooCommerce powered online store that allows to switch to different currencies easily and create current exchange rate converter without limit WooCommerce Currency. It accepts payment with only one currency or all currencies.
+Woo Multi Currency is a plugin for WooCommerce powered online store that allows to switch to different currencies easily and create current exchange rate converter without limit WooCommerce Currency. It accepts payment with only one currency or all currencies. WooCommerce Multi Currency is a free plugin.
+
 ### Important Notice:
 - Plugin works based on WooCommerce plugin.
 - It is released on WordPress.org and you can use plugin as free to build themes for sale.
@@ -27,7 +28,9 @@ Woo Multi Currency is a plugin for WooCommerce powered online store that allows 
 
 &#9658; **Auto update exchange rates:** Auto update exchange rates at the real time from Yahoo Finance. It works based on WordPress cron job tool when customers visit your site. You can set interval. eg: 6 hours, 1 day….
 
-&#9658; **Widget ready:** Widgets are available in plugin. Multi Currency Selecter + Exchange Rate
+&#9658; **Recalculate coupon value:** Recalculate coupon value base on rate of order currency with main currency. Example: coupon AAA value=10, main currency=USD, order currency=EUR, rate: 1 USD = 0.8 EUR, so when "Allow multi currency payment" enabled, client apply coupon code AAA, discount value is 10*0.8=8 EUR.
+
+&#9658; **Widget ready:** Widgets are available in plugin.(Switcher + Calculator)
 
 &#9658; **Updates weekly:** If have any bug or any problem, we’ll update plugin weekly..
 
@@ -49,9 +52,15 @@ Woo Multi Currency is a plugin for WooCommerce powered online store that allows 
 
 &#9658; **Compatible with Visual Composer plugin:** Woo Multi Currency is integrated operation with Visual Composer. We’ll update plugin according to the latest version of Visual Composer.
 
-&#9658; **Unlimit style:** 5+ templates are available built (such as Pain Vertical, horizontal Pain, List horizontal flags, Flags Vertical List, List Currency Code + Flag).  Just one click, you have immediately desired type. We will continue to develop other types of diversity, rich, and more top-notch design.
+&#9658; **Fixed price with each currency:** You can add fixed price what will be not related to exchange rate with currency.
 
-&#9658; **Change Order Currency:** You can change order currency what customer paid. Use for report...
+&#9658; **Report** WooCommerce Report works perfectly with WooCommerce Multi Currency.
+
+&#9658; **Many sources exchange rate** Yahoo finance, Currency Converter…
+
+&#9658; **Save Exchange Rate in Order** Exchange rate will be saved when customer pay.
+
+&#9658; **Unlimit style:** 5+ templates are available built (such as Pain Vertical, horizontal Pain, List horizontal flags, Flags Vertical List, List Currency Code + Flag).  Just one click, you have immediately desired type. We will continue to develop other types of diversity, rich, and more top-notch design.
 
 &#9658; **Premium support 6 months.**
 
@@ -83,9 +92,19 @@ Check screenshots at http://villatheme.com/woo-multi-currency/ or http://villath
 2. Widget
 3. Approximately price
 == Changelog ==
-/*.1.2.4 - 2016.06.04*/
+/**v.1.3.2 - 2016.06.22*/
+- Added: some hooks
+- Fixed: some minor error
+
+/**v.1.3.1 - 2016.06.20*/
+- Fixed: Currency positon, decimal for approximate price as default currency
+
+/**v.1.3 - 2016.06.09**/
+- Fixed: Show wrong (GBP) as defult currency in admin report.
+- Added: Change coupon value by rate option
+
+/**v.1.2.4 - 2016.06.04**/
 - Added: Convert currency widget
-- Fixed: Some minors
 
 /**v.1.2.3 - Released 5th May 2016**/
 - Fixed: Select currency on IE, Safari

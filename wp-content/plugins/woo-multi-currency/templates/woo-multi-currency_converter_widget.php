@@ -14,11 +14,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	jQuery(document).ready(function () {
 		//jQuery('#wmc_widget_converter_from').select2();
 		//jQuery('#wmc_widget_converter_to').select2();
-		jQuery("#btn_convert").live('click',function(){
-			var from_rate=jQuery('#wmc_widget_converter_from').val();
-			var to_rate=jQuery('#wmc_widget_converter_to').val();
-			var convert_value=jQuery('#txt_amount').val();
-			var convert_result=(to_rate/from_rate)*convert_value;
+		jQuery("#btn_convert").live('click', function () {
+			var from_rate = jQuery('#wmc_widget_converter_from').val();
+			var to_rate = jQuery('#wmc_widget_converter_to').val();
+			var convert_value = jQuery('#txt_amount').val();
+			var convert_result = (to_rate / from_rate) * convert_value;
 			jQuery('#txt_result').val(convert_result.toFixed(4));
 		});
 		jQuery("#txt_amount").on("keypress keyup blur", function (event) {
@@ -32,23 +32,37 @@ if ( ! defined( 'ABSPATH' ) ) {
 		});
 	});
 </script>
-<input type="text" id="txt_amount" style="width: 180px;" placeholder="<?php esc_attr_e('Enter your value','woo-multi-currency');?>">
-<div class="woo-multi-currency-wrapper">
-	<select name="wmc_widget_converter_from" id="wmc_widget_converter_from" class="wc-enhanced-select" style="width:180px;" data-placeholder="Select currency">
-		<?php foreach ( $selected_currencies as $code => $values ) : ?>
-			<option value="<?php echo $values['rate']; ?>"
-					style="width:100px;"><?php echo "(" . $values['symbol'] . ") " . $currencies_list[$code]; ?></option>
-		<?php endforeach; ?>
-	</select>
-</div>
-To
-<div class="woo-multi-currency-wrapper">
-	<select name="wmc_widget_converter_to" id="wmc_widget_converter_to" class="wc-enhanced-select" style="width:180px;" data-placeholder="Select currency">
-		<?php foreach ( $selected_currencies as $code => $values ) : ?>
-			<option value="<?php echo $values['rate']; ?>"
-					style="width:100px;"><?php echo "(" . $values['symbol'] . ") " . $currencies_list[$code]; ?></option>
-		<?php endforeach; ?>
-	</select>
-</div>
-<input type="text" id="txt_result" style="width: 180px;" readonly>
-<input type="button" id="btn_convert" value="<?php esc_attr_e('Convert','woo-multi-currency')?>"
+<table class="table" border="0" cellpadding="2" cellspacing="2">
+	<tr>
+		<td>
+			<input type="text" id="txt_amount" style="width: 180px;" placeholder="<?php esc_attr_e( 'Enter your value', 'woo-multi-currency' ); ?>">
+		</td>
+		<td>
+			<div class="woo-multi-currency-wrapper">
+				<select name="wmc_widget_converter_from" id="wmc_widget_converter_from" class="wc-enhanced-select" style="width:180px;" data-placeholder="Select currency">
+					<?php foreach ( $selected_currencies as $code => $values ) : ?>
+						<option value="<?php echo $values['rate']; ?>"
+								style="width:100px;"><?php echo "(" . $values['symbol'] . ") " . $currencies_list[$code]; ?></option>
+					<?php endforeach; ?>
+				</select>
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2"><?php esc_html_e( 'To', 'woo-multi-currency' ) ?></td>
+	</tr>
+	<tr>
+		<td><input type="text" id="txt_result" style="width: 180px;" readonly></td>
+		<td>
+			<div class="woo-multi-currency-wrapper">
+				<select name="wmc_widget_converter_to" id="wmc_widget_converter_to" class="wc-enhanced-select" style="width:180px;" data-placeholder="Select currency">
+					<?php foreach ( $selected_currencies as $code => $values ) : ?>
+						<option value="<?php echo $values['rate']; ?>"
+								style="width:100px;"><?php echo "(" . $values['symbol'] . ") " . $currencies_list[$code]; ?></option>
+					<?php endforeach; ?>
+				</select>
+			</div>
+		</td>
+	</tr>
+</table>
+<input type="button" id="btn_convert" value="<?php esc_attr_e( 'Convert', 'woo-multi-currency' ) ?>"

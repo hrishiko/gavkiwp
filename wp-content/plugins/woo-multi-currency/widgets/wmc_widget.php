@@ -9,7 +9,7 @@ class WMC_Widget extends WP_Widget {
 	function __construct() {
 		parent::__construct(
 			'wmc_widget', // Base ID
-			esc_attr__( 'Woo Multi Currency', 'woo-multi-currency' ), // Name
+			esc_attr__( 'Woo Currency Selecter', 'woo-multi-currency' ), // Name
 			array( 'description' => esc_attr__( 'Change display currency on shop page', 'woo-multi-currency' ), ) // Args
 		);
 	}

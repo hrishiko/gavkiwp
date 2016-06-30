@@ -83,3 +83,11 @@ div.wmc_auto_update_time_type {
 .wmc_auto_update_rates_time {
 	width: 80px;
 }
+
+#wpadminbar .wmc-notice {
+	background: #E65100;
+}
+
+#wpadminbar .wmc-notice a {
+	color: #fff;
+}

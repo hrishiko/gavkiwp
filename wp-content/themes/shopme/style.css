@@ -103,6 +103,7 @@ Headers:	1em 'Roboto' sans-serif;
 	13. Footer
 	14. Sitemap Styles
 	15. Cookie Alert Styles
+	17. INSTOCK PLUGIN
 
 */
 
@@ -1333,6 +1334,7 @@ Headers:	1em 'Roboto' sans-serif;
 		input[type="number"],
 		input[type="url"],
 		input[type="tel"],
+		input[type=submit]
 		select,
 		textarea {
 			padding: 8px 10px 8px 12px;
@@ -6743,3 +6745,29 @@ Headers:	1em 'Roboto' sans-serif;
 	}
 
 }
+
+
+/* ------------------------------------------------
+	17. INSTOCK PLUGIN
+------------------------------------------------ */
+
+input#alert_email {
+    max-width: 300px;
+    border: 1px solid #E5E5E5;
+    margin-bottom: 1px;
+    LINE-HEIGHT: 50PX;
+    HEIGHT: 50px;
+}
+
+input.alert_submit {
+    background-color: #0186c8;
+    height: 50px;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+     color: #fff;
+}
+.instock_message {max-width: 300px; width: 100%; float: left; margin:0 0 15px; border: 1px solid #0186c8; font-size: 14px; color:#000000; padding: 10px;}
+.instock_message.error {border-color:#0186c8;}
+.alert_wrapper {float: left; width: 100%; position: relative; display: block; padding-right: 0px; margin:15px 0;}
+.alert_wrapper.active {bottom:0px;}

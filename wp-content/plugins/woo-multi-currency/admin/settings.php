@@ -8,8 +8,32 @@ class WMC_Admin_Settings {
 		add_filter( 'woocommerce_general_settings', array( $this, 'woocommerce_general_settings' ) );
 		add_action( 'admin_notices', array( $this, 'global_note' ) );
 		add_action( 'admin_init', array( $this, 'admin_init' ) );
+		add_action( 'admin_bar_menu', array( &$this, 'admin_bar_menu' ) );
 	}
 
+	function admin_bar_menu() {
+		if ( wmc_check_vpro() ) {
+			return;
+		}
+		global $wp_admin_bar;
+		/* Add the main siteadmin menu item */
+		$wp_admin_bar->add_menu(
+			array(
+				'id'     => 'upgrade-woo-multi-currency',
+				'parent' => 'top-secondary',
+				'title'  => '<a href="http://bit.ly/woo-multi-currency-pro">' . esc_html__( 'Upgrade Woo Multi Currency Pro' ) . '</a>',
+				'meta'   => array( 'class' => 'wmc-notice' ),
+			)
+		);
+	}
+
+	/**
+	 * Garenal tab setting
+	 *
+	 * @param $datas
+	 *
+	 * @return mixed
+	 */
 	function woocommerce_general_settings( $datas ) {
 		foreach ( $datas as $k => $data ) {
 			if ( isset( $data['id'] ) ) {
@@ -62,7 +86,7 @@ class WMC_Admin_Settings {
 						<a class="button-primary"
 						   href="http://villatheme.com/extensions/woo-multi-currency/"><?php echo esc_html__( 'Use Now', 'woo-multi-currency' ) ?></a>
 						<a class="button-secondary skip"
-						   href="?wmc_hide=1"><?php echo esc_html__( 'Hidden', 'woo-multi-currency' ) ?></a>
+						   href="<?php echo add_query_arg( array( 'wmc_hide' => 1 ), admin_url() ) ?>"><?php echo esc_html__( 'Hidden', 'woo-multi-currency' ) ?></a>
 					</p>
 				</div>
 			<?php }

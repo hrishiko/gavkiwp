@@ -20,6 +20,9 @@ if ( $wmc_auto_update_rates_time <= 0 || $wmc_auto_update_rates_time == "" ) {
 		<div class="wmc_description num_of_dec_description">
 			<b><?php esc_html_e( 'Number of Decimals', 'woo-multi-currency' ); ?></b>
 		</div>
+		<?php
+		do_action( 'wmc_currency_options_fields_header' );
+		?>
 	</div>
 	<div id="wmc_sort" class="wmc_sort">
 		<?php foreach ( $selected_currencies as $code => $values ) { ?>
@@ -58,6 +61,9 @@ if ( $wmc_auto_update_rates_time <= 0 || $wmc_auto_update_rates_time == "" ) {
 					   value="<?php echo isset( $values['num_of_dec'] ) ? $values['num_of_dec'] : 2; ?>"
 					   class="num_of_dec num_of_dec_css"
 					   placeholder="<?php esc_attr_e( 'Number of Decimals', 'woo-multi-currency' ); ?>">
+				<?php
+				do_action( 'wmc_currency_options_fields_input', $values );
+				?>
 				<input type="button" value="<?php esc_attr_e( 'Get Exchange', 'woo-multi-currency' ); ?>"
 					   id="btn_get_exchange" class="btn_get_exchange button" name="btn_get_exchange[]"
 					   title="Press to get exchange rate for this currency" />
@@ -94,6 +100,9 @@ if ( $wmc_auto_update_rates_time <= 0 || $wmc_auto_update_rates_time == "" ) {
 				   class="wmc_rate_css">
 			<input id="num_of_dec" name="num_of_dec[]" type="text" class="num_of_dec num_of_dec_css"
 				   placeholder="<?php esc_attr_e( 'Number of Decimals', 'woo-multi-currency' ); ?>" value="2">
+			<?php
+			do_action( 'wmc_currency_options_fields_input_temp' );
+			?>
 			<input type="button" value="<?php esc_attr_e( 'Get Exchange', 'woo-multi-currency' ); ?>"
 				   id="btn_get_exchange" class="btn_get_exchange button" name="btn_get_exchange[]"
 				   title="Press to get exchange rate for this currency" />

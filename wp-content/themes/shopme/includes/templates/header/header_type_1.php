@@ -22,7 +22,7 @@
 
 					<!-- - - - - - - - - - - - - - Language change - - - - - - - - - - - - - - - - -->
 
-					<?php /*if (defined('ICL_LANGUAGE_CODE')): ?>
+					<?php if (defined('ICL_LANGUAGE_CODE')): ?>
 						<?php if (shopme_custom_get_option('show_language')): ?>
 							<?php echo SHOPME_WC_WPML_CONFIG::wpml_header_languages_list(); ?>
 						<?php endif; ?>
@@ -36,9 +36,9 @@
 						<?php if (defined('SHOPME_WOO_CONFIG')): ?>
 							<?php echo SHOPME_WC_CURRENCY_SWITCHER::output_switcher_html(); ?>
 						<?php endif; ?>
-					<?php endif; */?>
+					<?php endif; ?>
 					<div class="clearfix_woo_currency">
-						<?php  echo do_shortcode('[woo_multi_currency]'); ?>
+						<?php  /*echo do_shortcode('[woo_multi_currency]'); */?>
 					</div>
 					<!-- - - - - - - - - - - - - - End of currency change - - - - - - - - - - - - - - - - -->
 
